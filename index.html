@@ -3,97 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Neo Sudoku — Classic & Color Puzzle Game</title>
+<title>Neo Sudoku — Free Color Sudoku Puzzle Game (Play Online)</title>
+<meta name="description" content="Play Neo Sudoku free in your browser — Classic number sudoku, Chroma color sudoku, and Fusion mode combining both. No download, no account, 100% offline once loaded.">
+<meta name="keywords" content="sudoku, color sudoku, sudoku online, free sudoku game, sudoku puzzle, play sudoku, offline sudoku, chroma sudoku">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://neosudoku.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neo Sudoku — Free Color Sudoku Puzzle Game">
+<meta property="og:description" content="Classic, Chroma & Fusion sudoku modes. Play free in your browser, no download needed.">
+<meta property="og:url" content="https://neosudoku.netlify.app/">
+<meta property="og:site_name" content="Neo Sudoku">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Neo Sudoku — Free Color Sudoku Puzzle Game">
+<meta name="twitter:description" content="Classic, Chroma & Fusion sudoku modes. Play free in your browser, no download needed.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Neo Sudoku",
+  "description": "A color-based sudoku puzzle game with Classic, Chroma and Fusion modes. Play free in the browser, fully offline.",
+  "applicationCategory": "Game",
+  "gamePlatform": ["Web Browser", "Android"],
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "publisher": {"@type": "Organization", "name": "Sane We Games"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#1a0f2e; --bg2:#241541; --gold:#FFD700; --gold-dim:#c9a832;
-  --cyan:#00F0FF; --text:#f2ecff; --text-dim:#b9aed6; --card:#2c1a4d;
-  --border:rgba(255,215,0,0.25);
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#170B2E; --bg2:#20113D; --surface:#241540; --surface2:#2C1B4D;
+  --gold:#F2C230; --gold-soft:#e0b23e; --cyan:#2FE6DC; --line:rgba(242,194,48,0.16);
+  --line-strong:rgba(242,194,48,0.32);
+  --ink:#F3EEFF; --ink-dim:#A79BCB;
+  --c1:#FF6B6B; --c2:#4ECDC4; --c3:#FFD166; --c4:#A685E2; --c5:#6BCB77;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
 body{
-  margin:0;height:100%;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  background:radial-gradient(ellipse at top,var(--bg2),var(--bg));
-  color:var(--text);
+  margin:0;height:100%;min-height:100vh;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:
+    radial-gradient(ellipse 700px 420px at 82% -8%, rgba(47,230,220,0.12), transparent),
+    radial-gradient(ellipse 600px 500px at -10% 90%, rgba(242,194,48,0.08), transparent),
+    var(--bg);
+  color:var(--ink); overflow-x:hidden;
 }
-.wrap{max-width:760px;margin:0 auto;padding:48px 20px 60px}
-.hero{text-align:center;padding-bottom:36px}
-.badge{
-  display:inline-block;font-size:.75rem;letter-spacing:.08em;color:var(--gold);
-  border:1px solid var(--border);padding:5px 14px;border-radius:999px;margin-bottom:18px;
-}
+.display{font-family:'Baloo 2',sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+
+/* ---------- Hero ---------- */
+.hero{display:grid;grid-template-columns:1fr;gap:36px;padding:52px 0 38px;align-items:center;text-align:center}
+.hero-text{max-width:520px;margin:0 auto}
+.eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px}
 h1{
-  font-size:2.4rem;margin:0 0 10px;font-weight:800;
-  background:linear-gradient(90deg,var(--gold),var(--cyan));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(2.1rem,7vw,2.9rem);
+  line-height:1.06;margin:0 0 14px;letter-spacing:-0.01em;
 }
-.tag{color:var(--text-dim);font-size:1.05rem;max-width:480px;margin:0 auto 28px;line-height:1.5}
+h1 .hl{color:var(--gold)}
+.tag{color:var(--ink-dim);font-size:1.02rem;line-height:1.55;margin:0 auto 26px;max-width:420px}
 .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{
-  display:inline-block;padding:13px 26px;border-radius:12px;font-weight:700;
-  text-decoration:none;font-size:.95rem;transition:transform .15s;
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:13px;font-weight:600;text-decoration:none;font-size:.94rem;font-family:'Inter',sans-serif;transition:transform .15s ease}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--gold);color:#1a1030;box-shadow:0 6px 20px -6px rgba(242,194,48,0.5)}
+.btn-secondary{border:1px solid var(--line-strong);color:var(--ink)}
+
+/* ---------- Sudoku grid hero visual ---------- */
+.grid-stage{display:flex;justify-content:center;padding:6px 0 10px}
+.sud-grid{
+  display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
+  width:min(300px,78vw);height:min(300px,78vw);
+  background:var(--surface);border:2px solid var(--gold);border-radius:16px;overflow:hidden;
+  box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
 }
-.btn:active{transform:scale(.97)}
-.btn-primary{background:linear-gradient(90deg,var(--gold),#e0b400);color:#1a0f2e}
-.btn-secondary{border:1px solid var(--border);color:var(--gold)}
-.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:40px 0}
-.mode-card{
-  background:var(--card);border:1px solid var(--border);border-radius:14px;
-  padding:18px 10px;text-align:center;
+.sud-grid .cell{
+  display:flex;align-items:center;justify-content:center;
+  border:0.5px solid rgba(255,255,255,0.06);
+  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(11px,3.2vw,15px);
+  color:var(--cyan); opacity:0; animation:pop .35s ease forwards;
 }
-.mode-icon{width:34px;height:34px;margin:0 auto 10px;border-radius:8px}
-.classic .mode-icon{background:conic-gradient(from 0deg,var(--cyan),transparent 0 25%,var(--cyan) 0 50%,transparent 0 75%,var(--cyan) 0)}
-.chroma .mode-icon{background:conic-gradient(#ff5f6d,#ffc371,#6dd5fa,#a685e2)}
-.fusion .mode-icon{background:radial-gradient(circle at 30% 30%,var(--gold),var(--cyan))}
-.mode-card h3{margin:0 0 4px;font-size:.95rem;color:var(--text)}
-.mode-card p{margin:0;font-size:.75rem;color:var(--text-dim)}
-.features{display:grid;gap:10px;margin:40px 0}
-.feat{
-  display:flex;align-items:center;gap:12px;background:var(--card);
-  border:1px solid var(--border);border-radius:12px;padding:14px 16px;
+.cell:nth-child(3n){border-right:1.5px solid var(--line-strong)}
+.cell:nth-child(9n+1){border-left:none}
+.sud-grid .cell:nth-child(-n+9){border-top:none}
+.row-thick{border-top:1.5px solid var(--line-strong) !important}
+@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.cell.dot::after{content:'';width:44%;height:44%;border-radius:50%}
+.cell.dot.c1::after{background:var(--c1)} .cell.dot.c2::after{background:var(--c2)}
+.cell.dot.c3::after{background:var(--c3)} .cell.dot.c4::after{background:var(--c4)}
+.cell.dot.c5::after{background:var(--c5)}
+
+/* ---------- Modes ---------- */
+.section{padding:34px 0}
+.section h2{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:700;margin:0 0 4px;text-align:center}
+.section .sub{color:var(--ink-dim);text-align:center;font-size:.92rem;margin:0 0 24px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mode-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 8px;text-align:center}
+.mode-swatch{width:38px;height:38px;margin:0 auto 12px;border-radius:10px}
+.classic .mode-swatch{background:linear-gradient(135deg,var(--cyan),#1592a8)}
+.chroma .mode-swatch{background:conic-gradient(var(--c1),var(--c3),var(--c2),var(--c4),var(--c1))}
+.fusion .mode-swatch{background:radial-gradient(circle at 32% 30%,var(--gold),var(--c4))}
+.mode-card h3{font-family:'Baloo 2',sans-serif;margin:0 0 4px;font-size:1rem}
+.mode-card p{margin:0;font-size:.78rem;color:var(--ink-dim);line-height:1.4}
+
+/* ---------- Features, sudoku-box styled panel ---------- */
+.feat-panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px}
+.feat{display:flex;align-items:center;gap:13px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.feat:last-child{border-bottom:none}
+.feat .num{
+  font-family:'Baloo 2',sans-serif;font-weight:700;color:var(--gold);font-size:.85rem;
+  width:26px;height:26px;border-radius:7px;border:1px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.feat .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
-.feat span{font-size:.9rem;color:var(--text-dim)}
-.footer{text-align:center;margin-top:44px;color:var(--text-dim);font-size:.8rem}
-.footer .gold{color:var(--gold)}
-@media(max-width:420px){.modes{grid-template-columns:1fr 1fr 1fr;gap:8px}h1{font-size:1.9rem}}
+.feat span{font-size:.9rem;color:var(--ink-dim)}
+
+.footer{text-align:center;padding:40px 0 50px;color:var(--ink-dim);font-size:.82rem;border-top:1px solid var(--line);margin-top:20px}
+.footer .gold{color:var(--gold);font-weight:600}
+@media(prefers-reduced-motion:reduce){.cell{animation:none;opacity:1}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hero">
-    <div class="badge">FREE • OFFLINE • NO ADS YET</div>
-    <h1>Neo Sudoku</h1>
-    <p class="tag">Classic Sudoku, reimagined with color. Play Classic, Chroma & Fusion modes — a fresh offline puzzle experience.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://maheztoi-ux.github.io/navasudoku/" target="_blank">▶ Play Now — Free</a>
-      <a class="btn btn-secondary" href="#modes">See Modes</a>
+    <div class="hero-text">
+      <p class="eyebrow">A free color sudoku puzzle game</p>
+      <h1>Sudoku, but make it <span class="hl">color.</span></h1>
+      <p class="tag">Play free online sudoku with numbers, colors, or both at once. Neo Sudoku keeps the logic you love — Classic, Chroma & Fusion modes, no download needed.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://maheztoi-ux.github.io/navasudoku/" target="_blank">Play Now</a>
+        <a class="btn btn-secondary" href="#modes">Explore Modes</a>
+      </div>
+    </div>
+    <div class="grid-stage">
+      <div class="sud-grid" id="sudGrid"></div>
     </div>
   </div>
 
-  <div class="modes" id="modes">
-    <div class="mode-card classic"><div class="mode-icon"></div><h3>Classic</h3><p>The original 1-9 logic puzzle</p></div>
-    <div class="mode-card chroma"><div class="mode-icon"></div><h3>Chroma</h3><p>Solve with colors, not numbers</p></div>
-    <div class="mode-card fusion"><div class="mode-icon"></div><h3>Fusion</h3><p>Numbers + colors combined</p></div>
+  <div class="section" id="modes">
+    <h2>Three ways to solve</h2>
+    <p class="sub">Same 9×9 logic underneath, a different feel on top</p>
+    <div class="modes">
+      <div class="mode-card classic"><div class="mode-swatch"></div><h3>Classic</h3><p>The original number grid</p></div>
+      <div class="mode-card chroma"><div class="mode-swatch"></div><h3>Chroma</h3><p>Solve entirely with colors</p></div>
+      <div class="mode-card fusion"><div class="mode-swatch"></div><h3>Fusion</h3><p>Numbers and colors, together</p></div>
+    </div>
   </div>
 
-  <div class="features">
-    <div class="feat"><div class="dot"></div><span>Zen Mode — no mistake limit, just relax</span></div>
-    <div class="feat"><div class="dot"></div><span>Light & Dark themes, built for outdoor play</span></div>
-    <div class="feat"><div class="dot"></div><span>Smart Nudge — a gentle hint when you're stuck</span></div>
-    <div class="feat"><div class="dot"></div><span>Notes, Undo, Rapid Fill & difficulty-aware hints</span></div>
-    <div class="feat"><div class="dot"></div><span>100% offline — play anywhere, anytime</span></div>
+  <div class="section">
+    <h2>Built for real solving</h2>
+    <p class="sub">No clutter — just the things that make a puzzle session good</p>
+    <div class="feat-panel">
+      <div class="feat"><div class="num">1</div><span>Zen Mode — solve at your own pace, no mistake limit</span></div>
+      <div class="feat"><div class="num">2</div><span>Light & Dark themes, easy on the eyes indoors or out</span></div>
+      <div class="feat"><div class="num">3</div><span>Notes, Undo and Rapid Fill for faster solving</span></div>
+      <div class="feat"><div class="num">4</div><span>Difficulty-aware hints that explain the technique</span></div>
+      <div class="feat"><div class="num">5</div><span>100% offline — no account, no connection needed</span></div>
+    </div>
   </div>
 
   <div class="footer">
-    Coming soon to <span class="gold">Google Play</span> — currently in testing.<br>
+    Coming soon to <span class="gold">Google Play</span> — currently in closed testing.<br>
     Built by Sane We Games.
   </div>
 </div>
+<script>
+(function(){
+  var grid = document.getElementById('sudGrid');
+  var given = {1:5,3:3,7:6,10:6,13:1,15:9,18:9,19:8,25:6,28:8,31:6,33:3,37:5,38:1,40:7,44:2,46:2,49:6,51:8,53:5,55:4,58:1,60:9,63:1,66:5,69:2,72:2,75:3,77:5,79:8};
+  var colored = [4,11,16,22,29,35,41,47,52,58+1,64,70,76];
+  var colorClasses = ['c1','c2','c3','c4','c5'];
+  for (var i=0;i<81;i++){
+    var cell = document.createElement('div');
+    cell.className = 'cell';
+    if (Math.floor(i/9)%3===0 && i>=9) cell.classList.add('row-thick');
+    var idx = i+1;
+    if (colored.indexOf(idx) !== -1 && !given[idx]) {
+      cell.classList.add('dot', colorClasses[idx % colorClasses.length]);
+    } else if (given[idx]) {
+      cell.textContent = given[idx];
+    }
+    cell.style.animationDelay = (Math.random()*0.6)+'s';
+    grid.appendChild(cell);
+  }
+})();
+</script>
 </body>
 </html>
