@@ -29,6 +29,18 @@
   "gamePlatform": ["Web Browser", "Android"],
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
   "publisher": {"@type": "Organization", "name": "Sane We Games"}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is Neo Sudoku free to play?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free. No account, no paywall — just open the link and play."}},
+    {"@type": "Question", "name": "Do I need to download an app?", "acceptedAnswer": {"@type": "Answer", "text": "No. It runs right in your browser. An Android app is coming soon to Google Play for those who prefer it."}},
+    {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once the page has loaded once, you can keep solving puzzles without an internet connection."}},
+    {"@type": "Question", "name": "What's the difference between Classic, Chroma and Fusion?", "acceptedAnswer": {"@type": "Answer", "text": "Classic is the traditional 1-9 number grid. Chroma replaces numbers with colors. Fusion combines both in one puzzle."}},
+    {"@type": "Question", "name": "Can I play on iPhone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it works in any mobile browser including Safari on iOS — no app store needed."}}
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,6 +135,14 @@ h1 .hl{color:var(--gold)}
 
 .footer{text-align:center;padding:40px 0 50px;color:var(--ink-dim);font-size:.82rem;border-top:1px solid var(--line);margin-top:20px}
 .footer .gold{color:var(--gold);font-weight:600}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:last-child{border-bottom:none}
+.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--ink);font-family:'Inter',sans-serif;font-weight:600;font-size:.92rem;padding:15px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer}
+.faq-q .arrow{color:var(--gold);transition:transform .2s;flex-shrink:0;font-size:.8rem}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
+.faq-item.open .faq-a{max-height:200px}
+.faq-a p{margin:0;padding:0 16px 16px;font-size:.85rem;color:var(--ink-dim);line-height:1.5}
 @media(prefers-reduced-motion:reduce){.cell{animation:none;opacity:1}}
 </style>
 </head>
@@ -173,6 +193,33 @@ h1 .hl{color:var(--gold)}
     </div>
   </div>
 
+  <div class="section">
+    <h2>Frequently asked</h2>
+    <p class="sub">Quick answers before you jump in</p>
+    <div class="feat-panel" id="faqPanel">
+      <div class="faq-item">
+        <button class="faq-q">Is Neo Sudoku free to play?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, completely free. No account, no paywall — just open the link and play.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to download an app?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>No. It runs right in your browser. An Android app is coming soon to Google Play for those who prefer it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does it work offline?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, once the page has loaded once, you can keep solving puzzles without an internet connection.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between Classic, Chroma and Fusion?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Classic is the traditional 1-9 number grid. Chroma replaces numbers with colors. Fusion combines both in one puzzle.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I play on iPhone?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, it works in any mobile browser including Safari on iOS — no app store needed.</p></div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">
     Coming soon to <span class="gold">Google Play</span> — currently in closed testing.<br>
     Built by Sane We Games.
@@ -197,6 +244,13 @@ h1 .hl{color:var(--gold)}
     cell.style.animationDelay = (Math.random()*0.6)+'s';
     grid.appendChild(cell);
   }
+
+  var faqPanel = document.getElementById('faqPanel');
+  faqPanel.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btn.parentElement.classList.toggle('open');
+    });
+  });
 })();
 </script>
 </body>
