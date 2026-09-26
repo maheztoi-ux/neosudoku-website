@@ -1,0 +1,18 @@
+{
+  "name": "Neo Sudoku: Classic & Color",
+  "short_name": "Neo Sudoku",
+  "description": "Play Neo Sudoku: Classic, Chroma & Fusion modes free in your browser.",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#170B2E",
+  "theme_color": "#170B2E",
+  "icons": [
+    {
+      "src": "og-image.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
