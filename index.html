@@ -130,8 +130,29 @@ body{
 /* Hero Section */
 .hero{display:grid;grid-template-columns:1fr;gap:36px;padding:36px 0 38px;align-items:center;text-align:center}
 .hero-text{max-width:520px;margin:0 auto}
-.eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:6px}
-.streak-badge{background:rgba(242,194,48,0.15);border:1px solid var(--line-strong);padding:2px 8px;border-radius:12px;color:var(--gold);font-weight:600;font-size:.75rem}
+.eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+
+/* Clickable Daily Challenge Badge */
+.streak-badge{
+  background:rgba(242,194,48,0.15);
+  border:1px solid var(--line-strong);
+  padding:3px 10px;
+  border-radius:12px;
+  color:var(--gold);
+  font-weight:600;
+  font-size:.75rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  transition:all .2s ease;
+  cursor:pointer;
+}
+.streak-badge:hover{
+  background:rgba(242,194,48,0.28);
+  transform:translateY(-1px);
+}
+
 h1{
   font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(2.1rem,7vw,2.9rem);
   line-height:1.06;margin:0 0 14px;letter-spacing:-0.01em;
@@ -224,7 +245,7 @@ h1 .hl{color:var(--gold)}
     <div class="hero-text">
       <p class="eyebrow">
         <span>Neo Sudoku: Classic & Color</span>
-        <span class="streak-badge">🔥 Daily Challenge Ready</span>
+        <a href="https://maheztoi-ux.github.io/navasudoku/" target="_blank" class="streak-badge">🔥 Daily Challenge Ready ➔</a>
       </p>
       <h1>Sudoku, but make it <span class="hl">color.</span></h1>
       <p class="tag">Play free online sudoku with numbers, colors, or both at once. Neo Sudoku: Classic & Color keeps the logic you love — Classic, Chroma & Fusion modes, no download needed.</p>
@@ -332,7 +353,7 @@ h1 .hl{color:var(--gold)}
     if (navigator.vibrate) navigator.vibrate(12);
   }
 
-  document.querySelectorAll('.btn, .nav-btn-play, .faq-q').forEach(function(el){
+  document.querySelectorAll('.btn, .nav-btn-play, .faq-q, .streak-badge').forEach(function(el){
     el.addEventListener('click', triggerHaptic);
   });
 
@@ -370,22 +391,4 @@ h1 .hl{color:var(--gold)}
       var shareData = {
         title: 'Neo Sudoku: Classic & Color',
         text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
-        url: window.location.href
-      };
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-        } catch (err) {
-          console.log('Share canceled');
-        }
-      } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Game link copied to clipboard!');
-      }
-    });
-  }
-})();
-</script>
-</body>
-</html>
-
+        url: win
