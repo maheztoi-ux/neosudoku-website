@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neosudoku-classiccolor.netlify.app/sitemap.xml
