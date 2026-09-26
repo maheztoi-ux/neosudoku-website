@@ -256,6 +256,16 @@ h1 .hl{color:var(--gold)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
 .faq-item.open .faq-a{max-height:200px}
 .faq-a p{margin:0;padding:0 16px 16px;font-size:.85rem;color:var(--ink-dim);line-height:1.5}
+
+/* Screenshot Carousel */
+.carousel{max-width:320px;margin:0 auto}
+.carousel-track{position:relative;width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:0 20px 50px -20px rgba(0,0,0,0.6)}
+.carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease;pointer-events:none}
+.carousel-slide.active{opacity:1;pointer-events:auto}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.carousel-tabs{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.carousel-tab{background:none;border:1px solid var(--line-strong);color:var(--ink-dim);font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .2s ease}
+.carousel-tab.active{background:var(--gold);color:#1a1030;border-color:var(--gold)}
 </style>
 </head>
 <body>
@@ -342,18 +352,16 @@ h1 .hl{color:var(--gold)}
   <div class="section">
     <h2>See it in action</h2>
     <p class="sub">Real gameplay across all three modes</p>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-      <div>
-        <img src="screenshot.png" alt="Neo Sudoku Classic mode gameplay screenshot" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line);display:block">
-        <p style="text-align:center;font-size:.75rem;color:var(--ink-dim);margin:6px 0 0">Classic</p>
+    <div class="carousel" id="ssCarousel">
+      <div class="carousel-track">
+        <div class="carousel-slide active"><img src="screenshot.png" alt="Neo Sudoku Classic mode gameplay screenshot" loading="lazy"></div>
+        <div class="carousel-slide"><img src="screenshot-chroma.png" alt="Neo Sudoku Chroma mode gameplay screenshot with color puzzles" loading="lazy"></div>
+        <div class="carousel-slide"><img src="screenshot-fusion.png" alt="Neo Sudoku Fusion mode gameplay screenshot with numbers and colors" loading="lazy"></div>
       </div>
-      <div>
-        <img src="screenshot-chroma.png" alt="Neo Sudoku Chroma mode gameplay screenshot with color puzzles" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line);display:block">
-        <p style="text-align:center;font-size:.75rem;color:var(--ink-dim);margin:6px 0 0">Chroma</p>
-      </div>
-      <div>
-        <img src="screenshot-fusion.png" alt="Neo Sudoku Fusion mode gameplay screenshot with numbers and colors" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line);display:block">
-        <p style="text-align:center;font-size:.75rem;color:var(--ink-dim);margin:6px 0 0">Fusion</p>
+      <div class="carousel-tabs">
+        <button class="carousel-tab active" data-i="0">Classic</button>
+        <button class="carousel-tab" data-i="1">Chroma</button>
+        <button class="carousel-tab" data-i="2">Fusion</button>
       </div>
     </div>
   </div>
@@ -454,6 +462,32 @@ h1 .hl{color:var(--gold)}
         alert('Game link copied to clipboard!');
       }
     });
+  }
+
+  var carousel = document.getElementById('ssCarousel');
+  if (carousel) {
+    var slides = carousel.querySelectorAll('.carousel-slide');
+    var tabs = carousel.querySelectorAll('.carousel-tab');
+    var current = 0;
+    var timer;
+    function goTo(i){
+      slides[current].classList.remove('active');
+      tabs[current].classList.remove('active');
+      current = i;
+      slides[current].classList.add('active');
+      tabs[current].classList.add('active');
+    }
+    function next(){ goTo((current + 1) % slides.length); }
+    function startAuto(){ timer = setInterval(next, 3500); }
+    function stopAuto(){ clearInterval(timer); }
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){
+        stopAuto();
+        goTo(i);
+        startAuto();
+      });
+    });
+    startAuto();
   }
 })();
 </script>
