@@ -72,7 +72,7 @@
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+html{scroll-padding-top:64px;scroll-behavior:smooth;height:100%}
 body{
   margin:0;height:100%;min-height:100vh;
   font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
@@ -82,11 +82,41 @@ body{
     var(--bg);
   color:var(--ink); overflow-x:hidden;
 }
+
+/* ---------- Sticky Navbar ---------- */
+.navbar{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(23,11,46,0.88);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  padding:10px 0;
+}
+.nav-wrap{
+  max-width:920px;margin:0 auto;padding:0 22px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{
+  font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.05rem;
+  color:var(--gold);text-decoration:none;letter-spacing:-0.01em;
+}
+.nav-links{display:flex;align-items:center;gap:14px}
+.nav-links a{
+  color:var(--ink-dim);text-decoration:none;font-size:.82rem;font-weight:500;
+  transition:color .15s ease;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links .nav-btn-play{
+  background:var(--gold);color:#1a1030;padding:6px 14px;
+  border-radius:8px;font-weight:700;font-size:.82rem;
+  box-shadow:0 4px 12px -4px rgba(242,194,48,0.4);
+}
+.nav-links .nav-btn-play:hover{background:var(--gold-soft);color:#1a1030}
+
 .display{font-family:'Baloo 2',sans-serif}
 .wrap{max-width:920px;margin:0 auto;padding:0 22px}
 
 /* ---------- Hero ---------- */
-.hero{display:grid;grid-template-columns:1fr;gap:36px;padding:52px 0 38px;align-items:center;text-align:center}
+.hero{display:grid;grid-template-columns:1fr;gap:36px;padding:36px 0 38px;align-items:center;text-align:center}
 .hero-text{max-width:520px;margin:0 auto}
 .eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px}
 h1{
@@ -163,6 +193,19 @@ h1 .hl{color:var(--gold)}
 </style>
 </head>
 <body>
+
+<nav class="navbar">
+  <div class="nav-wrap">
+    <a href="#" class="nav-brand">Neo Sudoku</a>
+    <div class="nav-links">
+      <a href="#modes">Modes</a>
+      <a href="#how-to-play">How to Play</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://maheztoi-ux.github.io/navasudoku/" target="_blank" class="nav-btn-play">Play</a>
+    </div>
+  </div>
+</nav>
+
 <div class="wrap">
   <div class="hero">
     <div class="hero-text">
@@ -220,7 +263,7 @@ h1 .hl{color:var(--gold)}
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="how-to-play">
     <h2>How to play</h2>
     <p class="sub">Get solving in under a minute</p>
     <div class="feat-panel">
@@ -232,7 +275,7 @@ h1 .hl{color:var(--gold)}
     </div>
   </div>
 
-  <div class="section">
+  <div class="section" id="faq">
     <h2>Frequently asked</h2>
     <p class="sub">Quick answers before you jump in</p>
     <div class="feat-panel" id="faqPanel">
