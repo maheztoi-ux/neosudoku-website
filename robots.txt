@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neosudoku-classiccolor.netlify.app/sitemap.xml
+Sitemap: https://maheztoi-ux.github.io/neosudoku-website/sitemap.xml
