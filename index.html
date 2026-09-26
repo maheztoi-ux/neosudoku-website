@@ -164,31 +164,61 @@ h1 .hl{color:var(--gold)}
 .btn-primary{background:var(--gold);color:#1a1030;box-shadow:0 6px 20px -6px rgba(242,194,48,0.5)}
 .btn-secondary{border:1px solid var(--line-strong);color:var(--ink);background:transparent}
 
-/* Pure CSS Static Sudoku Grid */
+/* Dynamic Animated Sudoku Grid Stage */
 .grid-stage{display:flex;justify-content:center;padding:12px 0}
 .sud-grid{
   display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
   width:min(320px,82vw);aspect-ratio:1/1;
   background:var(--surface2);border:3px solid var(--gold);border-radius:16px;overflow:hidden;
-  box-shadow:0 16px 40px rgba(0,0,0,0.5);
+  box-shadow:0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(242,194,48,0.15);
+  animation: gridGlow 4s ease-in-out infinite alternate;
 }
+
+@keyframes gridGlow {
+  0% { box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 15px rgba(242,194,48,0.15); }
+  100% { box-shadow: 0 20px 48px rgba(0,0,0,0.6), 0 0 28px rgba(47,230,220,0.25); }
+}
+
 .sud-grid .cell{
   display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.12);
   font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(13px,3.8vw,17px);
   color:var(--cyan);
   background:rgba(36,21,64,0.5);
+  transition:all .3s ease;
 }
+
+/* Safe, visible pulse animations */
+.sud-grid .cell:nth-child(2n+1) { animation: cellPulse 3.5s ease-in-out infinite alternate; }
+.sud-grid .cell:nth-child(3n) { animation: cellPulse 4s ease-in-out 0.5s infinite alternate; }
+
+@keyframes cellPulse {
+  0% { background: rgba(36,21,64,0.5); color: var(--cyan); }
+  100% { background: rgba(44,27,77,0.8); color: var(--gold); }
+}
+
 /* 3x3 Box Thick Dividers */
 .sud-grid .cell:nth-child(3n){border-right:2px solid var(--gold)}
 .sud-grid .cell:nth-child(9n){border-right:none}
 .sud-grid .cell:nth-child(n+19):nth-child(-n+27),
 .sud-grid .cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid var(--gold)}
 
-.cell.dot::after{content:'';width:48%;height:48%;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
-.cell.dot.c1::after{background:var(--c1)} .cell.dot.c2::after{background:var(--c2)}
-.cell.dot.c3::after{background:var(--c3)} .cell.dot.c4::after{background:var(--c4)}
-.cell.dot.c5::after{background:var(--c5)}
+/* Color Dot Animations */
+.cell.dot::after{
+  content:'';width:48%;height:48%;border-radius:50%;
+  box-shadow:0 2px 6px rgba(0,0,0,0.4);
+  animation: dotScale 2.8s ease-in-out infinite alternate;
+}
+@keyframes dotScale {
+  0% { transform: scale(0.88); opacity: 0.85; }
+  100% { transform: scale(1.12); opacity: 1; filter: drop-shadow(0 0 4px currentColor); }
+}
+
+.cell.dot.c1::after{background:var(--c1); color:var(--c1)} 
+.cell.dot.c2::after{background:var(--c2); color:var(--c2); animation-delay: 0.4s}
+.cell.dot.c3::after{background:var(--c3); color:var(--c3); animation-delay: 0.8s} 
+.cell.dot.c4::after{background:var(--c4); color:var(--c4); animation-delay: 1.2s}
+.cell.dot.c5::after{background:var(--c5); color:var(--c5); animation-delay: 1.6s}
 
 /* Modes */
 .section{padding:34px 0}
@@ -346,25 +376,4 @@ h1 .hl{color:var(--gold)}
       <div class="feat"><div class="num">2</div><span>Choose a difficulty level to generate a fresh puzzle</span></div>
       <div class="feat"><div class="num">3</div><span>Tap a cell, then tap a number or color to fill it in</span></div>
       <div class="feat"><div class="num">4</div><span>Use Notes, Hints or Undo whenever you get stuck</span></div>
-      <div class="feat"><div class="num">5</div><span>Fill the grid so every row, column and box has no repeats</span></div>
-    </div>
-  </div>
-
-  <div class="section" id="faq">
-    <h2>Frequently asked</h2>
-    <p class="sub">Quick answers before you jump in</p>
-    <div class="feat-panel" id="faqPanel">
-      <div class="faq-item">
-        <button class="faq-q">Is Neo Sudoku: Classic & Color free to play?<span class="arrow">▾</span></button>
-        <div class="faq-a"><p>Yes, completely free. No account, no paywall — just open the link and play.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Do I need to download an app?<span class="arrow">▾</span></button>
-        <div class="faq-a"><p>No. It runs right in your browser. An Android app is coming soon to Google Play for those who prefer it.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Does it work offline?<span class="arrow">▾</span></button>
-        <div class="faq-a"><p>Yes, once the page has loaded once, you can keep solving puzzles without an internet connection.</p></div>
-      </div>
-      <div class="faq-item">
-        <button cla
+      <div class="feat"><div class="num">5</div><
