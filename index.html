@@ -77,8 +77,8 @@
 <style>
 :root{
   --bg:#170B2E; --bg2:#20113D; --surface:#241540; --surface2:#2C1B4D;
-  --gold:#F2C230; --gold-soft:#e0b23e; --cyan:#2FE6DC; --line:rgba(242,194,48,0.16);
-  --line-strong:rgba(242,194,48,0.35);
+  --gold:#F2C230; --gold-soft:#e0b23e; --cyan:#2FE6DC; --line:rgba(242,194,48,0.25);
+  --line-strong:rgba(242,194,48,0.6);
   --ink:#F3EEFF; --ink-dim:#A79BCB;
   --c1:#FF6B6B; --c2:#4ECDC4; --c3:#FFD166; --c4:#A685E2; --c5:#6BCB77;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
@@ -165,25 +165,27 @@ h1 .hl{color:var(--gold)}
 .btn-secondary{border:1px solid var(--line-strong);color:var(--ink);background:transparent}
 
 /* Pure CSS Static Sudoku Grid */
-.grid-stage{display:flex;justify-content:center;padding:6px 0 10px}
+.grid-stage{display:flex;justify-content:center;padding:12px 0}
 .sud-grid{
   display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
-  width:min(300px,78vw);height:min(300px,78vw);
-  background:var(--surface);border:2px solid var(--gold);border-radius:16px;overflow:hidden;
-  box-shadow:0 20px 50px -20px rgba(0,0,0,0.6);
+  width:min(320px,82vw);aspect-ratio:1/1;
+  background:var(--surface2);border:3px solid var(--gold);border-radius:16px;overflow:hidden;
+  box-shadow:0 16px 40px rgba(0,0,0,0.5);
 }
 .sud-grid .cell{
   display:flex;align-items:center;justify-content:center;
-  border:0.5px solid rgba(255,255,255,0.08);
-  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(12px,3.4vw,16px);
-  color:var(--cyan); opacity:1;
+  border:1px solid rgba(255,255,255,0.15);
+  font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(13px,3.8vw,17px);
+  color:var(--cyan);
+  background:rgba(36,21,64,0.5);
 }
-.cell:nth-child(3n){border-right:1.5px solid var(--line-strong)}
-.cell:nth-child(9n){border-right:none}
-.cell:nth-child(n+19):nth-child(-n+27),
-.cell:nth-child(n+46):nth-child(-n+54){border-bottom:1.5px solid var(--line-strong)}
+/* 3x3 Box Thick Dividers */
+.sud-grid .cell:nth-child(3n){border-right:2px solid var(--gold)}
+.sud-grid .cell:nth-child(9n){border-right:none}
+.sud-grid .cell:nth-child(n+19):nth-child(-n+27),
+.sud-grid .cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid var(--gold)}
 
-.cell.dot::after{content:'';width:44%;height:44%;border-radius:50%}
+.cell.dot::after{content:'';width:48%;height:48%;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4)}
 .cell.dot.c1::after{background:var(--c1)} .cell.dot.c2::after{background:var(--c2)}
 .cell.dot.c3::after{background:var(--c3)} .cell.dot.c4::after{background:var(--c4)}
 .cell.dot.c5::after{background:var(--c5)}
@@ -255,15 +257,42 @@ h1 .hl{color:var(--gold)}
     </div>
     <div class="grid-stage">
       <div class="sud-grid">
-        <div class="cell">5</div><div class="cell">3</div><div class="cell"></div><div class="cell dot c1"></div><div class="cell">7</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
-        <div class="cell">6</div><div class="cell dot c2"></div><div class="cell"></div><div class="cell">1</div><div class="cell">9</div><div class="cell dot c3"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
-        <div class="cell"></div><div class="cell">9</div><div class="cell">8</div><div class="cell dot c4"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">6</div><div class="cell"></div>
-        <div class="cell">8</div><div class="cell"></div><div class="cell dot c5"></div><div class="cell"></div><div class="cell">6</div><div class="cell"></div><div class="cell">3</div><div class="cell"></div><div class="cell"></div>
-        <div class="cell">4</div><div class="cell"></div><div class="cell"></div><div class="cell">8</div><div class="cell dot c1"></div><div class="cell">3</div><div class="cell"></div><div class="cell"></div><div class="cell">1</div>
-        <div class="cell"></div><div class="cell"></div><div class="cell">7</div><div class="cell"></div><div class="cell">2</div><div class="cell dot c2"></div><div class="cell"></div><div class="cell"></div><div class="cell">6</div>
-        <div class="cell"></div><div class="cell">6</div><div class="cell"></div><div class="cell"></div><div class="cell dot c3"></div><div class="cell"></div><div class="cell">2</div><div class="cell">8</div><div class="cell"></div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">4</div><div class="cell">1</div><div class="cell">9</div><div class="cell dot c4"></div><div class="cell"></div><div class="cell">5</div>
-        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">8</div><div class="cell dot c5"></div><div class="cell"></div><div class="cell">7</div><div class="cell">9</div>
+        <!-- Row 1 -->
+        <div class="cell">5</div><div class="cell">3</div><div class="cell dot c1"></div>
+        <div class="cell">6</div><div class="cell">7</div><div class="cell dot c2"></div>
+        <div class="cell">9</div><div class="cell">1</div><div class="cell dot c3"></div>
+        <!-- Row 2 -->
+        <div class="cell">6</div><div class="cell dot c2"></div><div class="cell">2</div>
+        <div class="cell">1</div><div class="cell">9</div><div class="cell">5</div>
+        <div class="cell">3</div><div class="cell dot c4"></div><div class="cell">8</div>
+        <!-- Row 3 -->
+        <div class="cell dot c4"></div><div class="cell">9</div><div class="cell">8</div>
+        <div class="cell">3</div><div class="cell dot c5"></div><div class="cell">2</div>
+        <div class="cell">5</div><div class="cell">6</div><div class="cell">7</div>
+        <!-- Row 4 -->
+        <div class="cell">8</div><div class="cell">5</div><div class="cell dot c3"></div>
+        <div class="cell">7</div><div class="cell">6</div><div class="cell">1</div>
+        <div class="cell">4</div><div class="cell dot c1"></div><div class="cell">2</div>
+        <!-- Row 5 -->
+        <div class="cell">4</div><div class="cell dot c5"></div><div class="cell">6</div>
+        <div class="cell">8</div><div class="cell dot c1"></div><div class="cell">3</div>
+        <div class="cell">7</div><div class="cell">9</div><div class="cell">1</div>
+        <!-- Row 6 -->
+        <div class="cell">7</div><div class="cell">1</div><div class="cell">3</div>
+        <div class="cell">9</div><div class="cell">2</div><div class="cell dot c4"></div>
+        <div class="cell">8</div><div class="cell">5</div><div class="cell">6</div>
+        <!-- Row 7 -->
+        <div class="cell">9</div><div class="cell">6</div><div class="cell">1</div>
+        <div class="cell">5</div><div class="cell dot c3"></div><div class="cell">7</div>
+        <div class="cell">2</div><div class="cell">8</div><div class="cell dot c5"></div>
+        <!-- Row 8 -->
+        <div class="cell">2</div><div class="cell">8</div><div class="cell dot c2"></div>
+        <div class="cell">4</div><div class="cell">1</div><div class="cell">9</div>
+        <div class="cell">6</div><div class="cell dot c3"></div><div class="cell">5</div>
+        <!-- Row 9 -->
+        <div class="cell dot c1"></div><div class="cell">4</div><div class="cell">5</div>
+        <div class="cell">2</div><div class="cell">8</div><div class="cell">6</div>
+        <div class="cell">1</div><div class="cell">7</div><div class="cell">9</div>
       </div>
     </div>
   </div>
@@ -338,12 +367,4 @@ h1 .hl{color:var(--gold)}
         <div class="faq-a"><p>Yes, once the page has loaded once, you can keep solving puzzles without an internet connection.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">What's the difference between Classic, Chroma and Fusion?<span class="arrow">▾</span></button>
-        <div class="faq-a"><p>Classic is the traditional 1-9 number grid. Chroma replaces numbers with colors. Fusion combines both in one puzzle.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Can I play on iPhone?<span class="arrow">▾</span></button>
-        <div class="faq-a"><p>Yes, it works in any mobile browser including Safari on iOS — no app store needed.</p></div>
-      </div>
-    </div>
-  </
+        <button cla
