@@ -5,11 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#170B2E">
 <meta name="google-site-verification" content="QMYjjWBzNi6ugnRlZLEN1Sb989_cjAnHFY0bCoplFHg" />
+
+<!-- PWA & Mobile Web App Meta Tags -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Neo Sudoku">
+
 <title>Neo Sudoku: Classic & Color — Free Online Sudoku Puzzle Game</title>
 <meta name="description" content="Play Neo Sudoku: Classic & Color free in your browser — Classic number sudoku, Chroma color sudoku, and Fusion mode combining both. No download, no account, 100% offline once loaded.">
 <meta name="keywords" content="sudoku, color sudoku, sudoku online, free sudoku game, sudoku puzzle, play sudoku, offline sudoku, chroma sudoku">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://neosudoku-classiccolor.netlify.app/">
+
+<!-- Open Graph & Social Cards (High CTR) -->
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://neosudoku-classiccolor.netlify.app/og-image.png">
 <meta property="og:title" content="Neo Sudoku: Classic & Color — Free Online Sudoku">
@@ -20,6 +30,7 @@
 <meta name="twitter:image" content="https://neosudoku-classiccolor.netlify.app/og-image.png">
 <meta name="twitter:title" content="Neo Sudoku: Classic & Color — Free Online Sudoku">
 <meta name="twitter:description" content="Classic, Chroma & Fusion sudoku modes. Play free in your browser, no download needed.">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +70,7 @@
   ]
 }
 </script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -83,7 +95,7 @@ body{
   color:var(--ink); overflow-x:hidden;
 }
 
-/* ---------- Sticky Navbar ---------- */
+/* Sticky Navbar */
 .navbar{
   position:sticky;top:0;z-index:1000;
   background:rgba(23,11,46,0.88);
@@ -115,10 +127,11 @@ body{
 .display{font-family:'Baloo 2',sans-serif}
 .wrap{max-width:920px;margin:0 auto;padding:0 22px}
 
-/* ---------- Hero ---------- */
+/* Hero Section */
 .hero{display:grid;grid-template-columns:1fr;gap:36px;padding:36px 0 38px;align-items:center;text-align:center}
 .hero-text{max-width:520px;margin:0 auto}
-.eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px}
+.eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:6px}
+.streak-badge{background:rgba(242,194,48,0.15);border:1px solid var(--line-strong);padding:2px 8px;border-radius:12px;color:var(--gold);font-weight:600;font-size:.75rem}
 h1{
   font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(2.1rem,7vw,2.9rem);
   line-height:1.06;margin:0 0 14px;letter-spacing:-0.01em;
@@ -131,7 +144,7 @@ h1 .hl{color:var(--gold)}
 .btn-primary{background:var(--gold);color:#1a1030;box-shadow:0 6px 20px -6px rgba(242,194,48,0.5)}
 .btn-secondary{border:1px solid var(--line-strong);color:var(--ink);background:transparent}
 
-/* ---------- Sudoku grid hero visual ---------- */
+/* Sudoku Grid visual */
 .grid-stage{display:flex;justify-content:center;padding:6px 0 10px}
 .sud-grid{
   display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
@@ -155,7 +168,7 @@ h1 .hl{color:var(--gold)}
 .cell.dot.c3::after{background:var(--c3)} .cell.dot.c4::after{background:var(--c4)}
 .cell.dot.c5::after{background:var(--c5)}
 
-/* ---------- Modes ---------- */
+/* Modes */
 .section{padding:34px 0}
 .section h2{font-family:'Baloo 2',sans-serif;font-size:1.5rem;font-weight:700;margin:0 0 4px;text-align:center}
 .section .sub{color:var(--ink-dim);text-align:center;font-size:.92rem;margin:0 0 24px}
@@ -168,7 +181,7 @@ h1 .hl{color:var(--gold)}
 .mode-card h3{font-family:'Baloo 2',sans-serif;margin:0 0 4px;font-size:1rem}
 .mode-card p{margin:0;font-size:.78rem;color:var(--ink-dim);line-height:1.4}
 
-/* ---------- Features, sudoku-box styled panel ---------- */
+/* Features Panel */
 .feat-panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:6px}
 .feat{display:flex;align-items:center;gap:13px;padding:14px 16px;border-bottom:1px solid var(--line)}
 .feat:last-child{border-bottom:none}
@@ -209,13 +222,16 @@ h1 .hl{color:var(--gold)}
 <div class="wrap">
   <div class="hero">
     <div class="hero-text">
-      <p class="eyebrow">Neo Sudoku: Classic & Color</p>
+      <p class="eyebrow">
+        <span>Neo Sudoku: Classic & Color</span>
+        <span class="streak-badge">🔥 Daily Challenge Ready</span>
+      </p>
       <h1>Sudoku, but make it <span class="hl">color.</span></h1>
       <p class="tag">Play free online sudoku with numbers, colors, or both at once. Neo Sudoku: Classic & Color keeps the logic you love — Classic, Chroma & Fusion modes, no download needed.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="https://maheztoi-ux.github.io/navasudoku/" target="_blank">Play Now</a>
         <a class="btn btn-secondary" href="#modes">Explore Modes</a>
-        <button id="shareBtn" class="btn btn-secondary">🔗 Share Game</button>
+        <button id="shareBtn" class="btn btn-secondary">💬 Challenge Friends</button>
       </div>
     </div>
     <div class="grid-stage">
@@ -308,11 +324,22 @@ h1 .hl{color:var(--gold)}
     Built by Sane We Games.
   </div>
 </div>
+
 <script>
 (function(){
+  // Haptic Feedback for clicks
+  function triggerHaptic() {
+    if (navigator.vibrate) navigator.vibrate(12);
+  }
+
+  document.querySelectorAll('.btn, .nav-btn-play, .faq-q').forEach(function(el){
+    el.addEventListener('click', triggerHaptic);
+  });
+
+  // Render Sudoku visual grid
   var grid = document.getElementById('sudGrid');
   var given = {1:5,3:3,7:6,10:6,13:1,15:9,18:9,19:8,25:6,28:8,31:6,33:3,37:5,38:1,40:7,44:2,46:2,49:6,51:8,53:5,55:4,58:1,60:9,63:1,66:5,69:2,72:2,75:3,77:5,79:8};
-  var colored = [4,11,16,22,29,35,41,47,52,58+1,64,70,76];
+  var colored = [4,11,16,22,29,35,41,47,52,59,64,70,76];
   var colorClasses = ['c1','c2','c3','c4','c5'];
   for (var i=0;i<81;i++){
     var cell = document.createElement('div');
@@ -328,6 +355,7 @@ h1 .hl{color:var(--gold)}
     grid.appendChild(cell);
   }
 
+  // FAQ Accordion
   var faqPanel = document.getElementById('faqPanel');
   faqPanel.querySelectorAll('.faq-q').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -335,27 +363,23 @@ h1 .hl{color:var(--gold)}
     });
   });
 
+  // Native Web Share + WhatsApp Fallback
   var shareBtn = document.getElementById('shareBtn');
   if (shareBtn) {
     shareBtn.addEventListener('click', async function() {
-      var shareData = {
-        title: 'Neo Sudoku: Classic & Color',
-        text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
-        url: window.location.href
-      };
+      var shareText = 'Maine Chroma Color Sudoku try kiya! 🧩 Kya tu ye puzzle bina kisi mistake ke solve kar sakta hai? Khel ke dekh:';
+      var shareUrl = window.location.href;
+      
       if (navigator.share) {
         try {
-          await navigator.share(shareData);
+          await navigator.share({
+            title: 'Neo Sudoku: Classic & Color',
+            text: shareText,
+            url: shareUrl
+          });
         } catch (err) {
           console.log('Share canceled');
         }
       } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Game link copied to clipboard!');
-      }
-    });
-  }
-})();
-</script>
-</body>
-</html>
+        // WhatsApp Direct Fallback for Desktop / non-supported browsers
+        var
