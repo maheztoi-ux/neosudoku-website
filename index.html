@@ -19,7 +19,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://neosudoku-classiccolor.netlify.app/">
 
-<!-- Open Graph & Social Cards (High CTR) -->
+<!-- Open Graph & Social Cards -->
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://neosudoku-classiccolor.netlify.app/og-image.png">
 <meta property="og:title" content="Neo Sudoku: Classic & Color — Free Online Sudoku">
@@ -231,7 +231,7 @@ h1 .hl{color:var(--gold)}
       <div class="cta-row">
         <a class="btn btn-primary" href="https://maheztoi-ux.github.io/navasudoku/" target="_blank">Play Now</a>
         <a class="btn btn-secondary" href="#modes">Explore Modes</a>
-        <button id="shareBtn" class="btn btn-secondary">💬 Challenge Friends</button>
+        <button id="shareBtn" class="btn btn-secondary">🔗 Share Game</button>
       </div>
     </div>
     <div class="grid-stage">
@@ -363,23 +363,29 @@ h1 .hl{color:var(--gold)}
     });
   });
 
-  // Native Web Share + WhatsApp Fallback
+  // Native Web Share + Clipboard / WhatsApp Fallback
   var shareBtn = document.getElementById('shareBtn');
   if (shareBtn) {
     shareBtn.addEventListener('click', async function() {
-      var shareText = 'Maine Chroma Color Sudoku try kiya! 🧩 Kya tu ye puzzle bina kisi mistake ke solve kar sakta hai? Khel ke dekh:';
-      var shareUrl = window.location.href;
-      
+      var shareData = {
+        title: 'Neo Sudoku: Classic & Color',
+        text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
+        url: window.location.href
+      };
       if (navigator.share) {
         try {
-          await navigator.share({
-            title: 'Neo Sudoku: Classic & Color',
-            text: shareText,
-            url: shareUrl
-          });
+          await navigator.share(shareData);
         } catch (err) {
           console.log('Share canceled');
         }
       } else {
-        // WhatsApp Direct Fallback for Desktop / non-supported browsers
-        var
+        navigator.clipboard.writeText(window.location.href);
+        alert('Game link copied to clipboard!');
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
+
