@@ -191,7 +191,6 @@ h1 .hl{color:var(--gold)}
   transition:all .3s ease;
 }
 
-/* Safe, visible pulse animations */
 .sud-grid .cell:nth-child(2n+1) { animation: cellPulse 3.5s ease-in-out infinite alternate; }
 .sud-grid .cell:nth-child(3n) { animation: cellPulse 4s ease-in-out 0.5s infinite alternate; }
 
@@ -438,10 +437,11 @@ h1 .hl{color:var(--gold)}
   var shareBtn = document.getElementById('shareBtn');
   if (shareBtn) {
     shareBtn.addEventListener('click', async function() {
+      var cleanUrl = 'https://neosudoku-classiccolor.netlify.app/';
       var shareData = {
         title: 'Neo Sudoku: Classic & Color',
         text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
-        url: window.location.href
+        url: cleanUrl
       };
       if (navigator.share) {
         try {
@@ -450,7 +450,7 @@ h1 .hl{color:var(--gold)}
           console.log('Share canceled');
         }
       } else {
-        navigator.clipboard.writeText(window.location.href);
+        navigator.clipboard.writeText(cleanUrl);
         alert('Game link copied to clipboard!');
       }
     });
@@ -459,4 +459,3 @@ h1 .hl{color:var(--gold)}
 </script>
 </body>
 </html>
-
