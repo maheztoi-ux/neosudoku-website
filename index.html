@@ -78,7 +78,7 @@
 :root{
   --bg:#170B2E; --bg2:#20113D; --surface:#241540; --surface2:#2C1B4D;
   --gold:#F2C230; --gold-soft:#e0b23e; --cyan:#2FE6DC; --line:rgba(242,194,48,0.16);
-  --line-strong:rgba(242,194,48,0.32);
+  --line-strong:rgba(242,194,48,0.35);
   --ink:#F3EEFF; --ink-dim:#A79BCB;
   --c1:#FF6B6B; --c2:#4ECDC4; --c3:#FFD166; --c4:#A685E2; --c5:#6BCB77;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
@@ -132,7 +132,6 @@ body{
 .hero-text{max-width:520px;margin:0 auto}
 .eyebrow{color:var(--cyan);font-size:.82rem;font-weight:500;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
 
-/* Clickable Daily Challenge Badge */
 .streak-badge{
   background:rgba(242,194,48,0.15);
   border:1px solid var(--line-strong);
@@ -165,7 +164,7 @@ h1 .hl{color:var(--gold)}
 .btn-primary{background:var(--gold);color:#1a1030;box-shadow:0 6px 20px -6px rgba(242,194,48,0.5)}
 .btn-secondary{border:1px solid var(--line-strong);color:var(--ink);background:transparent}
 
-/* Sudoku Grid visual */
+/* Pure CSS Static Sudoku Grid */
 .grid-stage{display:flex;justify-content:center;padding:6px 0 10px}
 .sud-grid{
   display:grid;grid-template-columns:repeat(9,1fr);grid-template-rows:repeat(9,1fr);
@@ -175,15 +174,15 @@ h1 .hl{color:var(--gold)}
 }
 .sud-grid .cell{
   display:flex;align-items:center;justify-content:center;
-  border:0.5px solid rgba(255,255,255,0.06);
-  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(11px,3.2vw,15px);
-  color:var(--cyan); opacity:0; animation:pop .35s ease forwards;
+  border:0.5px solid rgba(255,255,255,0.08);
+  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:clamp(12px,3.4vw,16px);
+  color:var(--cyan); opacity:1;
 }
 .cell:nth-child(3n){border-right:1.5px solid var(--line-strong)}
-.cell:nth-child(9n+1){border-left:none}
-.sud-grid .cell:nth-child(-n+9){border-top:none}
-.row-thick{border-top:1.5px solid var(--line-strong) !important}
-@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.cell:nth-child(9n){border-right:none}
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54){border-bottom:1.5px solid var(--line-strong)}
+
 .cell.dot::after{content:'';width:44%;height:44%;border-radius:50%}
 .cell.dot.c1::after{background:var(--c1)} .cell.dot.c2::after{background:var(--c2)}
 .cell.dot.c3::after{background:var(--c3)} .cell.dot.c4::after{background:var(--c4)}
@@ -223,7 +222,6 @@ h1 .hl{color:var(--gold)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease}
 .faq-item.open .faq-a{max-height:200px}
 .faq-a p{margin:0;padding:0 16px 16px;font-size:.85rem;color:var(--ink-dim);line-height:1.5}
-@media(prefers-reduced-motion:reduce){.cell{animation:none;opacity:1}}
 </style>
 </head>
 <body>
@@ -256,7 +254,17 @@ h1 .hl{color:var(--gold)}
       </div>
     </div>
     <div class="grid-stage">
-      <div class="sud-grid" id="sudGrid"></div>
+      <div class="sud-grid">
+        <div class="cell">5</div><div class="cell">3</div><div class="cell"></div><div class="cell dot c1"></div><div class="cell">7</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell">6</div><div class="cell dot c2"></div><div class="cell"></div><div class="cell">1</div><div class="cell">9</div><div class="cell dot c3"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+        <div class="cell"></div><div class="cell">9</div><div class="cell">8</div><div class="cell dot c4"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">6</div><div class="cell"></div>
+        <div class="cell">8</div><div class="cell"></div><div class="cell dot c5"></div><div class="cell"></div><div class="cell">6</div><div class="cell"></div><div class="cell">3</div><div class="cell"></div><div class="cell"></div>
+        <div class="cell">4</div><div class="cell"></div><div class="cell"></div><div class="cell">8</div><div class="cell dot c1"></div><div class="cell">3</div><div class="cell"></div><div class="cell"></div><div class="cell">1</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell">7</div><div class="cell"></div><div class="cell">2</div><div class="cell dot c2"></div><div class="cell"></div><div class="cell"></div><div class="cell">6</div>
+        <div class="cell"></div><div class="cell">6</div><div class="cell"></div><div class="cell"></div><div class="cell dot c3"></div><div class="cell"></div><div class="cell">2</div><div class="cell">8</div><div class="cell"></div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">4</div><div class="cell">1</div><div class="cell">9</div><div class="cell dot c4"></div><div class="cell"></div><div class="cell">5</div>
+        <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell">8</div><div class="cell dot c5"></div><div class="cell"></div><div class="cell">7</div><div class="cell">9</div>
+      </div>
     </div>
   </div>
 
@@ -338,57 +346,4 @@ h1 .hl{color:var(--gold)}
         <div class="faq-a"><p>Yes, it works in any mobile browser including Safari on iOS — no app store needed.</p></div>
       </div>
     </div>
-  </div>
-
-  <div class="footer">
-    Coming soon to <span class="gold">Google Play</span> — currently in closed testing.<br>
-    Built by Sane We Games.
-  </div>
-</div>
-
-<script>
-(function(){
-  // Haptic Feedback for clicks
-  function triggerHaptic() {
-    if (navigator.vibrate) navigator.vibrate(12);
-  }
-
-  document.querySelectorAll('.btn, .nav-btn-play, .faq-q, .streak-badge').forEach(function(el){
-    el.addEventListener('click', triggerHaptic);
-  });
-
-  // Render Sudoku visual grid
-  var grid = document.getElementById('sudGrid');
-  var given = {1:5,3:3,7:6,10:6,13:1,15:9,18:9,19:8,25:6,28:8,31:6,33:3,37:5,38:1,40:7,44:2,46:2,49:6,51:8,53:5,55:4,58:1,60:9,63:1,66:5,69:2,72:2,75:3,77:5,79:8};
-  var colored = [4,11,16,22,29,35,41,47,52,59,64,70,76];
-  var colorClasses = ['c1','c2','c3','c4','c5'];
-  for (var i=0;i<81;i++){
-    var cell = document.createElement('div');
-    cell.className = 'cell';
-    if (Math.floor(i/9)%3===0 && i>=9) cell.classList.add('row-thick');
-    var idx = i+1;
-    if (colored.indexOf(idx) !== -1 && !given[idx]) {
-      cell.classList.add('dot', colorClasses[idx % colorClasses.length]);
-    } else if (given[idx]) {
-      cell.textContent = given[idx];
-    }
-    cell.style.animationDelay = (Math.random()*0.6)+'s';
-    grid.appendChild(cell);
-  }
-
-  // FAQ Accordion
-  var faqPanel = document.getElementById('faqPanel');
-  faqPanel.querySelectorAll('.faq-q').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      btn.parentElement.classList.toggle('open');
-    });
-  });
-
-  // Native Web Share + Clipboard / WhatsApp Fallback
-  var shareBtn = document.getElementById('shareBtn');
-  if (shareBtn) {
-    shareBtn.addEventListener('click', async function() {
-      var shareData = {
-        title: 'Neo Sudoku: Classic & Color',
-        text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
-        url: win
+  </
