@@ -22,10 +22,13 @@
 <!-- Open Graph & Social Cards -->
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://neosudoku-classiccolor.netlify.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:title" content="Neo Sudoku: Classic & Color — Free Online Sudoku">
 <meta property="og:description" content="Classic, Chroma & Fusion sudoku modes. Play free in your browser, no download needed.">
 <meta property="og:url" content="https://neosudoku-classiccolor.netlify.app/">
 <meta property="og:site_name" content="Neo Sudoku: Classic & Color">
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://neosudoku-classiccolor.netlify.app/og-image.png">
 <meta name="twitter:title" content="Neo Sudoku: Classic & Color — Free Online Sudoku">
@@ -376,4 +379,84 @@ h1 .hl{color:var(--gold)}
       <div class="feat"><div class="num">2</div><span>Choose a difficulty level to generate a fresh puzzle</span></div>
       <div class="feat"><div class="num">3</div><span>Tap a cell, then tap a number or color to fill it in</span></div>
       <div class="feat"><div class="num">4</div><span>Use Notes, Hints or Undo whenever you get stuck</span></div>
-      <div class="feat"><div class="num">5</div><
+      <div class="feat"><div class="num">5</div><span>Fill the grid so every row, column and box has no repeats</span></div>
+    </div>
+  </div>
+
+  <div class="section" id="faq">
+    <h2>Frequently asked</h2>
+    <p class="sub">Quick answers before you jump in</p>
+    <div class="feat-panel" id="faqPanel">
+      <div class="faq-item">
+        <button class="faq-q">Is Neo Sudoku: Classic & Color free to play?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, completely free. No account, no paywall — just open the link and play.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to download an app?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>No. It runs right in your browser. An Android app is coming soon to Google Play for those who prefer it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does it work offline?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, once the page has loaded once, you can keep solving puzzles without an internet connection.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between Classic, Chroma and Fusion?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Classic is the traditional 1-9 number grid. Chroma replaces numbers with colors. Fusion combines both in one puzzle.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I play on iPhone?<span class="arrow">▾</span></button>
+        <div class="faq-a"><p>Yes, it works in any mobile browser including Safari on iOS — no app store needed.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Coming soon to <span class="gold">Google Play</span> — currently in closed testing.<br>
+    Built by Sane We Games.
+  </div>
+</div>
+
+<script>
+(function(){
+  function triggerHaptic() {
+    if (navigator.vibrate) navigator.vibrate(12);
+  }
+
+  document.querySelectorAll('.btn, .nav-btn-play, .faq-q, .streak-badge').forEach(function(el){
+    el.addEventListener('click', triggerHaptic);
+  });
+
+  var faqPanel = document.getElementById('faqPanel');
+  if (faqPanel) {
+    faqPanel.querySelectorAll('.faq-q').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+  }
+
+  var shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async function() {
+      var shareData = {
+        title: 'Neo Sudoku: Classic & Color',
+        text: 'Check out this free Color Sudoku puzzle game! Play Classic, Chroma & Fusion modes offline.',
+        url: window.location.href
+      };
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          console.log('Share canceled');
+        }
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Game link copied to clipboard!');
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
+
